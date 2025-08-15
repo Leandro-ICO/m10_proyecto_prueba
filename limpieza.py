@@ -42,11 +42,29 @@ df_final.rename(columns={"empresa_x":"empresa_original"}, inplace=True)
 
 df_sin_match = df_final[df_final["empresa_corregida"].isna()]
 
-print(df_sin_match.head())
+# print(df_sin_match.head())
 
 #Guardar los reportes de los 2 dataframes
 
 df_final.to_csv("resultados_cruce.csv",index=False)
 df_sin_match.to_csv("registros_sin_cruce.csv",index=False)
 
-#pendiente segunda etapa de limpieza de datos
+#SEGUNDA ETAPA
+
+import matplotlib.pyplot as plt
+from fpdf import FPDF
+from datetime import datetime
+
+#Ventas por empresa
+
+# Ventas por empresa
+
+ventas_por_empresa = df_final.groupby("empresa_corregida")["monto"].sum().reset_index()
+
+ventas_por_empresa.sort_values(by="monto", ascending=False, inplace=True)
+
+
+#Ventas por vendedor
+ventas_por_vendedor= df_final.groupby("vendedor")["monto"].sum().reset_index()
+
+ventas_por_vendedor.sort_values(by="monto", ascending=False, inplace=True)
