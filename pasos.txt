@@ -18,3 +18,6 @@
  
 7. SUBIR LA VERSIÓN LOCAL AL REPOSITORIO REMOTO (EN LA NUBE)
     git push origin main
+
+crear .gitignore  como archivos
+y agregar el nombre del archivo que no se debe subir a github ejemplo contraseñas.txt
